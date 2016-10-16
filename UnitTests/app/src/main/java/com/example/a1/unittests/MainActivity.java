@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity  implements Contract.View {
 
     private TextView responseView;
     private ProgressBar progressBar;
+    private TextView nameApk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity  implements Contract.View {
         progressBar = ((ProgressBar) findViewById(R.id.progressIndicator));
 
         presenter.onReady();
+        nameApk=(TextView) findViewById(R.id.nameApk);
+        nameApk.setText(getString(R.string.app_name)+BuildConfig.MYFLAVOR+BuildConfig.TYPE+"_"+BuildConfig.VERSION_NAME+".apk");
     }
 
     @Override

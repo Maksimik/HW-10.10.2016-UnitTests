@@ -12,17 +12,45 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions "env", "language"
+    def flavorBeta = '"Beta"'
+    def flavorProdaction = '"Prodacrion"'
+    productFlavors {
+        beta {
+            dimension "env"
+            buildConfigField "String", "MYFLAVOR", flavorBeta
+        }
+
+        production {
+            dimension "env"
+            buildConfigField "String", "MYFLAVOR", flavorProdaction
+        }
+
+        ru {
+            dimension "language"
+        }
+
+        en {
+            dimension "language"
+        }
+
+
+    }
+
+    def typeRelease = '"Release"'
+    def typeDebag = '"Debag"'
 
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "TYPE", typeRelease
+
         }
         debug {
-            release {
-                minifyEnabled false
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            }
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "TYPE", typeDebag
         }
     }
 }
